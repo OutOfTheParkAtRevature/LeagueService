@@ -3,72 +3,46 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Models;
+using Model;
 
-namespace Repo
+namespace Repository
 {
     public class Repo
     {
-        private readonly ProgContext _progContext;
+        private readonly TeamContext _teamContext;
         private readonly ILogger _logger;
-        public DbSet<Team> teams;
-        public DbSet<Role> roles;
+        public DbSet<Team> Teams;
+        public DbSet<Role> Roles;
 
 
-        public Repo(ProgContext progContext, ILogger<Repo> logger)
+        public Repo(TeamContext teamContext, ILogger<Repo> logger)
         {
-            _progContext = progContext;
+            _teamContext = teamContext;
             _logger = logger;
-            //this.roles = _progContext.Roles;
-            this.teams = _progContext.Teams;
+            this.Roles = _teamContext.Roles;
+            this.Teams = _teamContext.Teams;
+        }
+        // Access SaveChangesAsync from Logic class
+        public async Task CommitSave()
+        {
+            await _teamContext.SaveChangesAsync();
         }
 
         public async Task<Team> GetTeamById(int id)
         {
-            return await teams.FindAsync(id);
+            return await Teams.FindAsync(id);
         }
         public async Task<IEnumerable<Team>> GetTeams()
         {
-            return await teams.ToListAsync();
+            return await Teams.ToListAsync();
         }
         public async Task<Role> GetRoleById(int id)
         {
-            return await roles.FindAsync(id);
+            return await Roles.FindAsync(id);
         }
         public async Task<IEnumerable<Role>> GetRoles()
         {
-            return await roles.ToListAsync();
+            return await Roles.ToListAsync();
         }
-
-            /// <summary>
-            /// Get user Role
-            /// </summary>
-            /// <param name="id">UserID</param>
-            /// <returns>RoleID</returns>
-        //    public async Task<Role> GetRoleById(int id)
-        //{
-        //    return await _repo.GetRoleById(id);
-        //}
-        /// <summary>
-        /// Get list of user Roles
-        /// </summary>
-        /// <returns>list of Roles</returns>
-        //public async Task<IEnumerable<Role>> GetRoles()
-        //{
-        //    return await _repo.GetRoles();
-        //}
-        /// <summary>
-        /// Edit User to change Role
-        /// </summary>
-        /// <param name="userId">UserID</param>
-        /// <param name="roleId">RoleID</param>
-        /// <returns>Role added</returns>
-        //public async Task<Role> EditUserRole(Guid userId, int roleId)
-        //{
-        //    User tUser = await GetUserById(userId);
-        //    tUser.RoleID = roleId;
-        //    await _repo.CommitSave();
-        //    return await GetRoleById(roleId);
-        //}
     }
 }

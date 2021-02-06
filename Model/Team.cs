@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Model
 {
     public class Team
     {
@@ -20,5 +20,6 @@ namespace Models
         public int Wins { get; set; }
         [DisplayName("Losses")]
         public int Losses { get; set; }
+        public Guid CarpoolID { get; set; }
     }
 }

@@ -1596,7 +1596,7 @@
       },
       "Model/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2"
@@ -1608,29 +1608,29 @@
           "bin/placeholder/Model.dll": {}
         }
       },
-      "Repo/1.0.0": {
+      "Repository/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2",
           "Model": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Repo.dll": {}
+          "bin/placeholder/Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Repo.dll": {}
+          "bin/placeholder/Repository.dll": {}
         }
       },
       "Service/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2",
           "Model": "1.0.0",
-          "Repo": "1.0.0"
+          "Repository": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Service.dll": {}
@@ -5977,18 +5977,18 @@
     },
     "Model/1.0.0": {
       "type": "project",
-      "path": "../Models/Model.csproj",
-      "msbuildProject": "../Models/Model.csproj"
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     },
-    "Repo/1.0.0": {
+    "Repository/1.0.0": {
       "type": "project",
-      "path": "../Repo/Repo.csproj",
-      "msbuildProject": "../Repo/Repo.csproj"
+      "path": "../Repo/Repository.csproj",
+      "msbuildProject": "../Repo/Repository.csproj"
     },
     "Service/1.0.0": {
       "type": "project",
-      "path": "../Logic/Service.csproj",
-      "msbuildProject": "../Logic/Service.csproj"
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6003,19 +6003,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joelb\\.nuget\\packages\\": {}
+    "C:\\Users\\theje\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\TeamService\\TeamService.csproj",
+      "projectUniqueName": "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\TeamService\\TeamService.csproj",
       "projectName": "TeamService",
-      "projectPath": "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\TeamService\\TeamService.csproj",
-      "packagesPath": "C:\\Users\\joelb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\TeamService\\obj\\",
+      "projectPath": "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\TeamService\\TeamService.csproj",
+      "packagesPath": "C:\\Users\\theje\\.nuget\\packages\\",
+      "outputPath": "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\TeamService\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\joelb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\theje\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6029,11 +6033,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\Logic\\Service.csproj": {
-              "projectPath": "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\Logic\\Service.csproj"
+            "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\Model\\Model.csproj": {
+              "projectPath": "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\Model\\Model.csproj"
             },
-            "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\Models\\Model.csproj": {
-              "projectPath": "C:\\Users\\joelb\\Desktop\\revatureBatchDox\\P3\\P3_OutOfThePark\\TeamService\\Models\\Model.csproj"
+            "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\Service\\Service.csproj": {
+              "projectPath": "F:\\Visual Studio Projects\\P3_LeagueManager\\TeamService\\Service\\Service.csproj"
             }
           }
         }
@@ -6091,7 +6095,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
