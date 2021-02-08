@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -13,13 +11,19 @@ namespace Model
     {
         [Key]
         [DisplayName("Team ID")]
-        public int TeamID { get; set; }
+        public Guid TeamID { get; set; }
         [DisplayName("Team Name")]
         public string Name { get; set; }
         [DisplayName("Wins")]
         public int Wins { get; set; }
         [DisplayName("Losses")]
         public int Losses { get; set; }
+        [DisplayName("Carpool ID")]
+        [ForeignKey("RecipientListID")]
         public Guid CarpoolID { get; set; }
+        [ForeignKey("LeagueID")]
+        public Guid LeagueID { get; set; }
+        [ForeignKey("StatLineID")]
+        public Guid StatLineID { get; set; }
     }
 }
