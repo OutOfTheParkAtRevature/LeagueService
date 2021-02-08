@@ -1,2 +1,2 @@
-# TeamService
-Team Microservice API Repo
+# LeagueService
+League Microservice API Repo
