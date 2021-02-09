@@ -10,7 +10,7 @@ namespace Repository
 {
     public class Repo
     {
-        private readonly LeagueContext _LeagueContext;
+        private readonly LeagueContext _leagueContext;
         private readonly ILogger _logger;
         public DbSet<Team> Teams;
         public DbSet<Sport> Sports;
@@ -20,17 +20,17 @@ namespace Repository
 
         public Repo(LeagueContext teamContext, ILogger<Repo> logger)
         {
-            _LeagueContext = teamContext;
+            _leagueContext = teamContext;
             _logger = logger;
             //this.Roles = _teamContext.Roles;
-            this.Teams = _LeagueContext.Teams;
-            this.Sports = _LeagueContext.Sports;
-            this.Leagues = _LeagueContext.Leagues;
+            this.Teams = _leagueContext.Teams;
+            this.Sports = _leagueContext.Sports;
+            this.Leagues = _leagueContext.Leagues;
         }
         // Access SaveChangesAsync from Logic class
         public async Task CommitSave()
         {
-            await _LeagueContext.SaveChangesAsync();
+            await _leagueContext.SaveChangesAsync();
         }
 
         public async Task<Team> GetTeamById(int id)
@@ -41,13 +41,5 @@ namespace Repository
         {
             return await Teams.ToListAsync();
         }
-        //public async Task<Role> GetRoleById(int id)
-        //{
-        //    return await Roles.FindAsync(id);
-        //}
-        //public async Task<IEnumerable<Role>> GetRoles()
-        //{
-        //    return await Roles.ToListAsync();
-        //}
     }
 }
