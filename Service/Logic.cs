@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Model.DataTransfer;
-using Model;
-using Repository;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Model;
+using Model.DataTransfer;
+using Repository;
 
 namespace Service
 {
@@ -57,17 +55,17 @@ namespace Service
         /// </summary>
         /// <param name="id">UserID</param>
         /// <returns>RoleID</returns>
-        public async Task<Role> GetRoleById(int id)
-        {
-            return await _repo.GetRoleById(id);
-        }
-        /// <summary>
-        /// Get list of user Roles
-        /// </summary>
-        /// <returns>list of Roles</returns>
-        public async Task<IEnumerable<Role>> GetRoles()
-        {
-            return await _repo.GetRoles();
-        }
+        //public async Task<Role> GetRoleById(int id)
+        //{
+        //    return await _repo.GetRoleById(id);
+        //}
+        ///// <summary>
+        ///// Get list of user Roles
+        ///// </summary>
+        ///// <returns>list of Roles</returns>
+        //public async Task<IEnumerable<Role>> GetRoles()
+        //{
+        //    return await _repo.GetRoles();
+        //}
     }
 }
