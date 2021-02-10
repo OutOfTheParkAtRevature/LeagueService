@@ -59,6 +59,7 @@ namespace Service
                 VendorInfo = vendorInfo
             };
             await _repo.Vendors.AddAsync(newVendor);
+            await _repo.CommitSave();
             return newVendor;
         }
     }

@@ -31,7 +31,7 @@ namespace Model.Tests
         {
             var team = new Team()
             {
-                TeamID = 1,
+                TeamID = Guid.NewGuid(),
                 Name = "Broncos",
                 Wins = 3,
                 Losses = 1, 
@@ -43,18 +43,52 @@ namespace Model.Tests
         }
 
         /// <summary>
-        /// Makes sure Role Model works with valid data
+        /// Makes sure Sport model works with valid data
         /// </summary>
         [Fact]
-        public void ValidateRole()
+        public void ValidateSport()
         {
-            var role = new Role()
+            var sport = new Sport
             {
-                RoleID = 1,
-                RoleName = "Coach"
+                SportID = 5,
+                SportName = "football"
             };
 
-            var results = ValidateModel(role);
+            var results = ValidateModel(sport);
+            Assert.True(results.Count == 0);
+        }
+
+        /// <summary>
+        /// Makes sure Vendor model works with valid data
+        /// </summary>
+        [Fact]
+        public void ValidateVendor()
+        {
+            var vendor = new Vendor
+            {
+                VendorID = Guid.NewGuid(),
+                VendorInfo = "hotdog",
+                VendorName = "weinerhut"
+            };
+
+            var results = ValidateModel(vendor);
+            Assert.True(results.Count == 0);
+        }
+
+        /// <summary>
+        /// Makes sure League model works with valid data
+        /// </summary>
+        [Fact]
+        public void ValidateLeague()
+        {
+            var league = new League
+            {
+                LeagueID = Guid.NewGuid(),
+                LeagueName = "Gamesfortots",
+                SportID = 8
+            };
+
+            var results = ValidateModel(league);
             Assert.True(results.Count == 0);
         }
 

@@ -14,25 +14,25 @@ namespace Repository.Tests
         [Fact]
         public async void TestForCommitSave()
         {
-            var options = new DbContextOptionsBuilder<TeamContext>()
-            .UseInMemoryDatabase(databaseName: "p2newsetuptest")
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
             .Options;
 
-            using (var context = new TeamContext(options))
+            using (var context = new LeagueContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 Repo r = new Repo(context, new NullLogger<Repo>());
-                var role = new Role
+                var sport = new Sport
                 {
-                    RoleID = 6,
-                    RoleName = "Player"
+                    SportID = 8,
+                    SportName = "football"
                 };
 
-                r.Roles.Add(role);
+                r.Sports.Add(sport);
                 await r.CommitSave();
-                Assert.NotEmpty(context.Roles);
+                Assert.NotEmpty(context.Sports);
             }
         }
 
@@ -42,11 +42,11 @@ namespace Repository.Tests
         [Fact]
         public async void TestForGetTeams()
         {
-            var options = new DbContextOptionsBuilder<TeamContext>()
-            .UseInMemoryDatabase(databaseName: "p2newsetuptest")
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
             .Options;
 
-            using (var context = new TeamContext(options))
+            using (var context = new LeagueContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -54,13 +54,14 @@ namespace Repository.Tests
                 Repo r = new Repo(context, new NullLogger<Repo>());
                 var team = new Team
                 {
-                    TeamID = 4, // 4 for seeding
+                    TeamID = Guid.NewGuid(),
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
                 };
 
                 r.Teams.Add(team);
+                await r.CommitSave();
                 var listOfTeams = await r.GetTeams();
                 Assert.NotNull(listOfTeams);
             }
@@ -72,11 +73,11 @@ namespace Repository.Tests
         [Fact]
         public async void TestForGetTeamById()
         {
-            var options = new DbContextOptionsBuilder<TeamContext>()
-            .UseInMemoryDatabase(databaseName: "p2newsetuptest")
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
             .Options;
 
-            using (var context = new TeamContext(options))
+            using (var context = new LeagueContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -84,71 +85,46 @@ namespace Repository.Tests
                 Repo r = new Repo(context, new NullLogger<Repo>());
                 var team = new Team
                 {
-                    TeamID = 4, // 4 for seeding
+                    TeamID = Guid.NewGuid(), 
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
                 };
 
                 r.Teams.Add(team);
+                await r.CommitSave();
                 var listOfTeams = await r.GetTeamById(team.TeamID);
                 Assert.True(listOfTeams.Equals(team));
             }
         }
 
         /// <summary>
-        /// Tests the GetRoles() method of Repo
+        /// Tests the GetVendors() method of Repo
         /// </summary>
         [Fact]
-        public async void TestForGetRoles()
+        public async void TestForGetVendors()
         {
-            var options = new DbContextOptionsBuilder<TeamContext>()
-            .UseInMemoryDatabase(databaseName: "p2newsetuptest")
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
             .Options;
 
-            using (var context = new TeamContext(options))
+            using (var context = new LeagueContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 Repo r = new Repo(context, new NullLogger<Repo>());
-                var role = new Role
+                var vendor = new Vendor
                 {
-                    RoleID = 4, // 4 for seeding
-                    RoleName = "Coach"
+                    VendorID = Guid.NewGuid(),
+                    VendorInfo = "hotdog",
+                    VendorName = "weinerhut"
                 };
 
-                r.Roles.Add(role);
-                var listOfRoles = await r.GetRoles();
-                Assert.NotNull(listOfRoles);
-            }
-        }
-
-        /// <summary>
-        /// Tests the GetRoleById() method of Repo
-        /// </summary>
-        [Fact]
-        public async void TestForGetRoleById()
-        {
-            var options = new DbContextOptionsBuilder<TeamContext>()
-            .UseInMemoryDatabase(databaseName: "p2newsetuptest")
-            .Options;
-
-            using (var context = new TeamContext(options))
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-
-                Repo r = new Repo(context, new NullLogger<Repo>());
-                var role = new Role
-                {
-                    RoleID = 4, // 4 for seeding
-                    RoleName = "Coach"
-                };
-
-                r.Roles.Add(role);
-                var listOfRoles = await r.GetRoleById(role.RoleID);
-                Assert.True(listOfRoles.Equals(role));
+                r.Vendors.Add(vendor);
+                await r.CommitSave();
+                var listOfTeams = await r.GetVendors();
+                Assert.NotNull(listOfTeams);
             }
         }
     }
