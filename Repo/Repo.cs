@@ -5,30 +5,34 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Model;
 
+
 namespace Repository
 {
     public class Repo
     {
-        private readonly TeamContext _teamContext;
+        private readonly LeagueContext _leagueContext;
         private readonly ILogger _logger;
         public DbSet<Team> Teams;
-        public DbSet<Role> Roles;
+        public DbSet<Sport> Sports;
+        public DbSet<League> Leagues;
+        public DbSet<Vendor> Vendors;
 
-
-        public Repo(TeamContext teamContext, ILogger<Repo> logger)
+        public Repo(LeagueContext leagueContext, ILogger<Repo> logger)
         {
-            _teamContext = teamContext;
+            _leagueContext = leagueContext;
             _logger = logger;
-            this.Roles = _teamContext.Roles;
-            this.Teams = _teamContext.Teams;
+            this.Teams = _leagueContext.Teams;
+            this.Sports = _leagueContext.Sports;
+            this.Leagues = _leagueContext.Leagues;
+            this.Vendors = _leagueContext.Vendors;
         }
         // Access SaveChangesAsync from Logic class
         public async Task CommitSave()
         {
-            await _teamContext.SaveChangesAsync();
+            await _leagueContext.SaveChangesAsync();
         }
 
-        public async Task<Team> GetTeamById(int id)
+        public async Task<Team> GetTeamById(Guid id)
         {
             return await Teams.FindAsync(id);
         }
@@ -36,13 +40,9 @@ namespace Repository
         {
             return await Teams.ToListAsync();
         }
-        public async Task<Role> GetRoleById(int id)
+        public async Task<IEnumerable<Vendor>> GetVendors()
         {
-            return await Roles.FindAsync(id);
-        }
-        public async Task<IEnumerable<Role>> GetRoles()
-        {
-            return await Roles.ToListAsync();
+            return await Vendors.ToListAsync();
         }
     }
 }

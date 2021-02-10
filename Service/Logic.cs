@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Model.DataTransfer;
-using Model;
-using Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Model;
+using Model.DataTransfer;
+using Repository;
 
 namespace Service
 {
-    public class Logic                                                      //Do I want to split roles into another microservice
+    public class Logic
     {
         public Logic() { }
         public Logic(Repo repo, ILogger<Repo> logger)
@@ -24,7 +23,7 @@ namespace Service
         /// </summary>
         /// <param name="id">TeamID</param>
         /// <returns>Team</returns>
-        public async Task<Team> GetTeamById(int id)
+        public async Task<Team> GetTeamById(Guid id)
         {
             return await _repo.GetTeamById(id);
         }
@@ -42,7 +41,7 @@ namespace Service
         /// <param name="id">Team to edit</param>
         /// <param name="editTeamDto">New information</param>
         /// <returns>modified Team</returns>
-        public async Task<Team> EditTeam(int id, EditTeamDto editTeamDto)
+        public async Task<Team> EditTeam(Guid id, EditTeamDto editTeamDto)
         {
             Team tTeam = await GetTeamById(id);
             if (tTeam.Name != editTeamDto.Name && editTeamDto.Name != "") { tTeam.Name = editTeamDto.Name; }
@@ -51,23 +50,16 @@ namespace Service
             await _repo.CommitSave();
             return tTeam;
         }
-        // Roles
-        /// <summary>
-        /// Get user Role
-        /// </summary>
-        /// <param name="id">UserID</param>
-        /// <returns>RoleID</returns>
-        public async Task<Role> GetRoleById(int id)
+        public async Task<Vendor> AddVendor(string vendorName, string vendorInfo)
         {
-            return await _repo.GetRoleById(id);
-        }
-        /// <summary>
-        /// Get list of user Roles
-        /// </summary>
-        /// <returns>list of Roles</returns>
-        public async Task<IEnumerable<Role>> GetRoles()
-        {
-            return await _repo.GetRoles();
+            Vendor newVendor = new Vendor()
+            {
+                VendorID = Guid.NewGuid(),
+                VendorName = vendorName,
+                VendorInfo = vendorInfo
+            };
+            await _repo.Vendors.AddAsync(newVendor);
+            return newVendor;
         }
     }
 }
