@@ -13,7 +13,7 @@ namespace Repository
         public DbSet<Team> Teams { get; set; }
         public DbSet<Sport> Sports { get; set; }
         public DbSet<League> Leagues { get; set; }
-        //public DbSet<Role> Roles { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
 
         public LeagueContext() { }
         public LeagueContext(DbContextOptions<LeagueContext> options) : base(options) { }

@@ -15,17 +15,16 @@ namespace Repository
         public DbSet<Team> Teams;
         public DbSet<Sport> Sports;
         public DbSet<League> Leagues;
-        //public DbSet<Role> Roles;
+        public DbSet<Vendor> Vendors;
 
-
-        public Repo(LeagueContext teamContext, ILogger<Repo> logger)
+        public Repo(LeagueContext leagueContext, ILogger<Repo> logger)
         {
-            _leagueContext = teamContext;
+            _leagueContext = leagueContext;
             _logger = logger;
-            //this.Roles = _teamContext.Roles;
             this.Teams = _leagueContext.Teams;
             this.Sports = _leagueContext.Sports;
             this.Leagues = _leagueContext.Leagues;
+            this.Vendors = _leagueContext.Vendors;
         }
         // Access SaveChangesAsync from Logic class
         public async Task CommitSave()
@@ -33,13 +32,17 @@ namespace Repository
             await _leagueContext.SaveChangesAsync();
         }
 
-        public async Task<Team> GetTeamById(int id)
+        public async Task<Team> GetTeamById(Guid id)
         {
             return await Teams.FindAsync(id);
         }
         public async Task<IEnumerable<Team>> GetTeams()
         {
             return await Teams.ToListAsync();
+        }
+        public async Task<IEnumerable<Vendor>> GetVendors()
+        {
+            return await Vendors.ToListAsync();
         }
     }
 }
