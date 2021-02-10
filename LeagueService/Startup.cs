@@ -33,8 +33,6 @@ namespace LeagueService
             services.AddScoped<Logic>();
             services.AddScoped<Repo>();
             services.AddControllers();
-            services.AddDbContext<LeagueContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("LocalDB")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeagueService", Version = "v1" });
