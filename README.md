@@ -1,2 +1,9 @@
 # LeagueService
-League Microservice API Repo
+
+## Description
+
+## Functionality
+
+## To-Do List
+
+## Links
