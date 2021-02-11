@@ -26,20 +26,35 @@ namespace Repository
             this.Leagues = _leagueContext.Leagues;
             this.Vendors = _leagueContext.Vendors;
         }
-        // Access SaveChangesAsync from Logic class
+        /// <summary>
+        /// Saves Changes to the database
+        /// </summary>
+        /// <returns></returns>
         public async Task CommitSave()
         {
             await _leagueContext.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// returns a team based on id parameter passed in
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Team> GetTeamById(Guid id)
         {
             return await Teams.FindAsync(id);
         }
+        /// <summary>
+        /// returns a list of all teams
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<Team>> GetTeams()
         {
             return await Teams.ToListAsync();
         }
+        /// <summary>
+        /// returns a list of all vendors
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<Vendor>> GetVendors()
         {
             return await Vendors.ToListAsync();
