@@ -50,6 +50,12 @@ namespace Service
             await _repo.CommitSave();
             return tTeam;
         }
+        /// <summary>
+        /// creates and adds a new vendor to the database and returns the new vendor
+        /// </summary>
+        /// <param name="vendorName"></param>
+        /// <param name="vendorInfo"></param>
+        /// <returns></returns>
         public async Task<Vendor> AddVendor(string vendorName, string vendorInfo)
         {
             Vendor newVendor = new Vendor()
