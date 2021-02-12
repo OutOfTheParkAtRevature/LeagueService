@@ -18,7 +18,7 @@ namespace Service.Tests
         {
             //for coverage
             var dbContext = new LeagueContext();
-            var logic = new Logic();
+            var logicClass = new Logic();
 
             var options = new DbContextOptionsBuilder<LeagueContext>()
             .UseInMemoryDatabase(databaseName: "p3LeagueService")
