@@ -43,6 +43,13 @@ namespace Repository
         {
             return await Teams.FindAsync(id);
         }
+
+
+        public async Task<Team> GetTeamByName(string name)
+        {
+            return await Teams.FirstOrDefaultAsync(x => x.Name == name);
+        }
+
         /// <summary>
         /// returns a list of all teams
         /// </summary>
@@ -58,6 +65,14 @@ namespace Repository
         public async Task<IEnumerable<Vendor>> GetVendors()
         {
             return await Vendors.ToListAsync();
+        }
+        public async Task<Vendor> GetVendorById(Guid id)
+        {
+            return await Vendors.FirstOrDefaultAsync(x => x.VendorID == id);
+        }
+        public async Task<Vendor> GetVendorByName(string name)
+        {
+            return await Vendors.FirstOrDefaultAsync(x => x.VendorName == name);
         }
     }
 }
