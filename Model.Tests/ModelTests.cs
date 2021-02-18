@@ -32,10 +32,12 @@ namespace Model.Tests
             var team = new Team()
             {
                 TeamID = Guid.NewGuid(),
+                CarpoolID = Guid.NewGuid(),
+                LeagueID = Guid.NewGuid(),
+                StatLineID = Guid.NewGuid(),
                 Name = "Broncos",
                 Wins = 3,
-                Losses = 1, 
-                CarpoolID = Guid.NewGuid()
+                Losses = 1
             };
 
             var results = ValidateModel(team);

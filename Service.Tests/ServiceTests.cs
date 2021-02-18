@@ -16,6 +16,10 @@ namespace Service.Tests
         [Fact]
         public async void TestForGetTeams()
         {
+            //for coverage
+            var dbContext = new LeagueContext();
+            var logicClass = new Logic();
+
             var options = new DbContextOptionsBuilder<LeagueContext>()
             .UseInMemoryDatabase(databaseName: "p3LeagueService")
             .Options;
@@ -29,7 +33,10 @@ namespace Service.Tests
                 Logic logic = new Logic(r, new NullLogger<Repo>());
                 var team = new Team
                 {
-                    TeamID = Guid.NewGuid(), 
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
@@ -61,7 +68,10 @@ namespace Service.Tests
                 Logic logic = new Logic(r, new NullLogger<Repo>());
                 var team = new Team
                 {
-                    TeamID = Guid.NewGuid(), 
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
@@ -94,6 +104,9 @@ namespace Service.Tests
                 var team = new Team()
                 {
                     TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
                     Name = "Dirty Donkies",
                     Wins = 0,
                     Losses = 5

@@ -55,6 +55,9 @@ namespace Repository.Tests
                 var team = new Team
                 {
                     TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
@@ -85,7 +88,10 @@ namespace Repository.Tests
                 Repo r = new Repo(context, new NullLogger<Repo>());
                 var team = new Team
                 {
-                    TeamID = Guid.NewGuid(), 
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
                     Name = "Broncos",
                     Wins = 2,
                     Losses = 1
