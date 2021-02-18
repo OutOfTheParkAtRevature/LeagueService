@@ -43,7 +43,7 @@ namespace LeagueService
 
             services.AddDbContext<LeagueContext>(options => options.UseSqlServer(_configuration.GetConnectionString("LocalDB")));
             
-            var identityUrl = Configuration.GetValue<string>("IdentityUrl");
+            var identityUrl = _configuration.GetValue<string>("IdentityUrl");
             var jwtSettings = _configuration.GetSection("JwtSettings");
             services.AddAuthentication(opt =>
             {
