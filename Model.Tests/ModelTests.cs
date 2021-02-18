@@ -110,5 +110,21 @@ namespace Model.Tests
             var errorcount = ValidateModel(teamEdit).Count;
             Assert.Equal(0, errorcount);
         }
+
+        /// <summary>
+        /// Validates the CreateLeagueDto Model works with proper data
+        /// </summary>
+        [Fact]
+        public void ValidateCreateLeagueDto()
+        {
+            var league = new CreateLeagueDto()
+            {
+                LeagueName = "sports",
+                SportName = "basketball"
+            };
+
+            var errorcount = ValidateModel(league).Count;
+            Assert.Equal(0, errorcount);
+        }
     }
 }
