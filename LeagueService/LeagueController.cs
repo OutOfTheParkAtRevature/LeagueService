@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DataTransfer;
@@ -16,6 +17,11 @@ namespace LeagueService
     {
         private readonly Logic _logic;
 
+        public LeagueController(Logic logic)
+        {
+            _logic = logic;
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateLeague(CreateLeagueDto cld)
         {
@@ -31,13 +37,14 @@ namespace LeagueService
         }
 
         [HttpGet("team/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetTeamById(Guid id)
         {
             if (await _logic.TeamExists(id) == false) return NotFound("Team not found");
             return Ok(await _logic.GetTeamById(id));
         }
 
-        [HttpGet("team/{name}")]
+        [HttpGet("team/name/{name}")]
         public async Task<IActionResult> GetTeamByName(Guid id)
         {
             if (await _logic.TeamExists(id) == false) return NotFound("Team not found");

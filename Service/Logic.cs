@@ -14,7 +14,7 @@ namespace Service
     {
         public Logic() { }
        
-        public Logic(Repo repo, ILogger<Repo> logger, HttpClient httpClient)
+        public Logic(Repo repo, ILogger<Repo> logger)
         {
             _repo = repo;
             _logger = logger;
