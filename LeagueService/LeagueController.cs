@@ -52,7 +52,6 @@ namespace LeagueService
         }
 
         [HttpGet("vendor")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetVendors()
         {
             return Ok(await _logic.GetVendors());
