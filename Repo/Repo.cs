@@ -43,13 +43,6 @@ namespace Repository
         {
             return await Teams.FindAsync(id);
         }
-
-
-        public async Task<Team> GetTeamByName(string name)
-        {
-            return await Teams.FirstOrDefaultAsync(x => x.Name == name);
-        }
-
         /// <summary>
         /// returns a list of all teams
         /// </summary>
@@ -66,13 +59,52 @@ namespace Repository
         {
             return await Vendors.ToListAsync();
         }
-        public async Task<Vendor> GetVendorById(Guid id)
+
+        public async Task SeedLeague()
         {
-            return await Vendors.FirstOrDefaultAsync(x => x.VendorID == id);
+            League league = new League()
+            {
+                LeagueID = Guid.NewGuid(),
+                LeagueName = "",
+                SportID = 0
+            };
+            await Leagues.AddAsync(league);
+            await CommitSave();
         }
-        public async Task<Vendor> GetVendorByName(string name)
+
+        public async Task SeedSports()
         {
-            return await Vendors.FirstOrDefaultAsync(x => x.VendorName == name);
+            int[] sportids = { 1, 2, 3, 4, 5, 6 };
+            string[] sports = { "", "", "", "", "", "" };
+            for (int i = 0; i < sports.Length; i++)
+            {
+                Sport sport = new Sport()
+                {
+                    SportID = sportids[i],
+                    SportName = sports[i]
+                };
+                await Sports.AddAsync(sport);
+            }
+            await CommitSave();            
+        }
+        
+        public async Task SeedTeams()
+        {
+            string[] teams = { "Tigers", "Bears", "Lions" };
+            List<League> leagueList = await Leagues.ToListAsync();
+            for (int i = 0; i < teams.Length; i++)
+            {
+                Team team = new Team()
+                {
+                    TeamID = Guid.NewGuid(),
+                    LeagueID = leagueList[0].LeagueID,
+                    CarpoolID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
+                    Name = teams[i]
+                };
+                await Teams.AddAsync(team);
+            }
+            await CommitSave();
         }
     }
 }
