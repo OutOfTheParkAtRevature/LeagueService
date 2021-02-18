@@ -31,7 +31,7 @@ namespace LeagueService.Tests
                 HttpClient http = new HttpClient();
                 Repo r = new Repo(context, new NullLogger<Repo>());
                 Logic logic = new Logic(r, new NullLogger<Repo>(), http);
-                LeagueController leagueController = new LeagueController();
+                LeagueController leagueController = new LeagueController(logic);
                 var sport = new Sport
                 {
                     SportID = 35,
@@ -49,7 +49,7 @@ namespace LeagueService.Tests
 
                 //var newLeague = await leagueController.CreateLeague(leagueDto);
                 //var getLeague = await context.Leagues.FirstOrDefaultAsync(x => x.LeagueName == leagueDto.LeagueName);
-                //Assert.True(getLeague.SportID == 35);
+                //Assert.True(getLeague.SportName.Equals("basketball"));
             }
         }
     }

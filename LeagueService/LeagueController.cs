@@ -16,6 +16,11 @@ namespace LeagueService
     {
         private readonly Logic _logic;
 
+        public LeagueController(Logic logic)
+        {
+            _logic = logic;
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateLeague(CreateLeagueDto cld)
         {
