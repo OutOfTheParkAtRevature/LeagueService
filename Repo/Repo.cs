@@ -44,12 +44,39 @@ namespace Repository
             return await Teams.FindAsync(id);
         }
         /// <summary>
+        /// returns a team based on name parameter passed in
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<Team> GetTeamByName(string name)
+        {
+            return await Teams.FirstOrDefaultAsync(x => x.Name == name);
+        }
+        /// <summary>
         /// returns a list of all teams
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<Team>> GetTeams()
         {
             return await Teams.ToListAsync();
+        }
+        /// <summary>
+        /// returns a vendor based on id parameter passed in
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Vendor> GetVendorById(Guid id)
+        {
+            return await Vendors.FirstOrDefaultAsync(x => x.VendorID == id);
+        }
+        /// <summary>
+        /// returns a vendor based on id parameter passed in
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<Vendor> GetVendorByName(string name)
+        {
+            return await Vendors.FirstOrDefaultAsync(x => x.VendorName == name);
         }
         /// <summary>
         /// returns a list of all vendors
