@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DataTransfer;
@@ -12,6 +13,7 @@ namespace LeagueService
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin, League Manager, Head Coach, Assistant Coach, Parent, Player")]
     public class LeagueController : ControllerBase
     {
         private readonly Logic _logic;
@@ -50,6 +52,7 @@ namespace LeagueService
         }
 
         [HttpGet("vendor")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetVendors()
         {
             return Ok(await _logic.GetVendors());

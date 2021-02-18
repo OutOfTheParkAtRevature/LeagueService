@@ -65,10 +65,18 @@ namespace Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+<<<<<<< Updated upstream
+=======
+        public async Task<IEnumerable<Vendor>> GetVendors()
+        {
+            return await Vendors.ToListAsync();
+        }
+>>>>>>> Stashed changes
         public async Task<Vendor> GetVendorById(Guid id)
         {
             return await Vendors.FirstOrDefaultAsync(x => x.VendorID == id);
         }
+<<<<<<< Updated upstream
         /// <summary>
         /// returns a vendor based on id parameter passed in
         /// </summary>
@@ -133,5 +141,60 @@ namespace Repository
         //    }
         //    await CommitSave();
         //}
+=======
+        public async Task<Vendor> GetVendorByName(string name)
+        {
+            return await Vendors.FirstOrDefaultAsync(x => x.VendorName == name);
+        }
+
+        public async Task SeedLeague()
+        {
+            League league = new League()
+            {
+                LeagueID = Guid.NewGuid(),
+                LeagueName = "",
+                SportID = 0
+            };
+            await Leagues.AddAsync(league);
+            await CommitSave();
+        }
+
+        public async Task SeedSports()
+        {
+            int[] sportids = { 1, 2, 3, 4, 5, 6 };
+            string[] sports = { "", "", "", "", "", "" };
+            for (int i = 0; i < sports.Length; i++)
+            {
+                Sport sport = new Sport()
+                {
+                    SportID = sportids[i],
+                    SportName = sports[i]
+                };
+                await Sports.AddAsync(sport);
+            }
+            await CommitSave();            
+        }
+
+        public async Task SeedTeams()
+        {
+            string[] teams = { "Tigers", "Bears", "Lions" };
+            List<League> leagueList = await Leagues.ToListAsync();
+            for (int i = 0; i < teams.Length; i++)
+            {
+                Team team = new Team()
+                {
+                    TeamID = Guid.NewGuid(),
+                    LeagueID = leagueList[0].LeagueID,
+                    CarpoolID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
+                    Name = teams[i]
+                };
+                await Teams.AddAsync(team);
+            }
+            await CommitSave();
+        }
+
+
+>>>>>>> Stashed changes
     }
 }
