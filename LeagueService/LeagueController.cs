@@ -13,6 +13,7 @@ namespace LeagueService
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin, League Manager, Head Coach, Assistant Coach, Parent, Player")]
     public class LeagueController : ControllerBase
     {
         private readonly Logic _logic;
