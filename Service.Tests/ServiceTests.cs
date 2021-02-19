@@ -14,7 +14,6 @@ namespace Service.Tests
         /// <summary>
         /// Tests the GetTeams() method of Logic
         /// </summary>
-<<<<<<< Updated upstream
         [Fact]
         public async void TestForGetTeams()
         {
@@ -512,7 +511,7 @@ namespace Service.Tests
                 Assert.True(teamExists);
             }
         }
-=======
+
         //[Fact]
         //public async void TestForGetTeams()
         //{
@@ -655,6 +654,5 @@ namespace Service.Tests
         //        Assert.Contains<Vendor>(newVendor, context.Vendors);
         //    }
         //}
->>>>>>> Stashed changes
     }
 }
