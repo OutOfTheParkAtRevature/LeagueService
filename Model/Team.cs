@@ -15,15 +15,15 @@ namespace Model
         [DisplayName("Team Name")]
         public string Name { get; set; }
         [DisplayName("Wins")]
-        public int Wins { get; set; }
+        public int Wins { get; set; } = 0;
         [DisplayName("Losses")]
-        public int Losses { get; set; }
+        public int Losses { get; set; } = 0;
         [DisplayName("Carpool ID")]
         [ForeignKey("RecipientListID")]
         public Guid CarpoolID { get; set; }
         [ForeignKey("LeagueID")]
         public Guid LeagueID { get; set; }
         [ForeignKey("StatLineID")]
-        public Guid StatLineID { get; set; }
+        public Guid? StatLineID { get; set; } = null;
     }
 }
