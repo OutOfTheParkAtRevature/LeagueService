@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -48,9 +49,9 @@ namespace Repository
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public async Task<Team> GetTeamByName(string name)
+        public async Task<IEnumerable<Team>> GetTeamsByName(string name)
         {
-            return await Teams.FirstOrDefaultAsync(x => x.Name == name);
+            return await Teams.Where(x => x.Name == name).ToListAsync();
         }
         /// <summary>
         /// returns a list of all teams
@@ -60,6 +61,19 @@ namespace Repository
         {
             return await Teams.ToListAsync();
         }
+
+
+        public async Task<IEnumerable<Team>> GetTeamsByLeague(Guid id)
+        {
+            return await Teams.Where(x => x.LeagueID == id).ToListAsync();
+        }
+
+
+        public async Task<Team> GetTeamByNameAndLeague(string teamName)
+        {
+            return await Teams.FirstOrDefaultAsync(x => x.Name == teamName);
+        }
+
         /// <summary>
         /// returns a vendor based on id parameter passed in
         /// </summary>

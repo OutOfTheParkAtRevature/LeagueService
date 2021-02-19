@@ -12,8 +12,8 @@ namespace Model.DataTransfer
         [DisplayName("Team Name")]
         public string Name { get; set; }
         [DisplayName("Wins")]
-        public int Wins { get; set; }
+        public int? Wins { get; set; }
         [DisplayName("Losses")]
-        public int Losses { get; set; }
+        public int? Losses { get; set; }
     }
 }
