@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 using Model;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Repository.Tests
@@ -105,7 +106,77 @@ namespace Repository.Tests
         }
 
         /// <summary>
-        /// Tests the GetTeamByName() method of Repo
+        /// Tests the GetTeamsByName() method of Repo
+        /// </summary>
+        [Fact]
+        public async void TestForGetTeamsByName()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .Options;
+
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                var team = new Team
+                {
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
+                    Name = "Broncos",
+                    Wins = 2,
+                    Losses = 1
+                };
+
+                r.Teams.Add(team);
+                await r.CommitSave();
+                var getTeam = await r.GetTeamsByName(team.Name);
+                var convertedList = (List<Team>)getTeam;
+                Assert.True(convertedList[0].Wins.Equals(2));
+            }
+        }
+
+        /// <summary>
+        /// Tests the GetTeamsByLeague() method of Repo
+        /// </summary>
+        [Fact]
+        public async void TestForGetTeamsByLeague()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .Options;
+
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                var team = new Team
+                {
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    LeagueID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
+                    Name = "Broncos",
+                    Wins = 2,
+                    Losses = 1
+                };
+
+                r.Teams.Add(team);
+                await r.CommitSave();
+                var getTeam = await r.GetTeamsByLeague(team.LeagueID);
+                var convertedList = (List<Team>)getTeam;
+                Assert.True(convertedList[0].Wins.Equals(2));
+            }
+        }
+
+        /// <summary>
+        /// Tests the GetTeamByNameAndLeague() method of Repo
         /// </summary>
         [Fact]
         public async void TestForGetTeamByName()
@@ -133,8 +204,9 @@ namespace Repository.Tests
 
                 r.Teams.Add(team);
                 await r.CommitSave();
-                var getTeam = await r.GetTeamByName(team.Name);
+                var getTeam = await r.GetTeamByNameAndLeague(team.Name);
                 Assert.True(getTeam.Wins.Equals(2));
+                Assert.True(getTeam.Losses.Equals(1));
             }
         }
 
