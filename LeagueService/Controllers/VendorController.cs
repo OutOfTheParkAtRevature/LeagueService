@@ -27,7 +27,7 @@ namespace LeagueService.Controllers
 
         // GET: api/<VendorController>
         [HttpGet]
-        public async Task<IActionResult> GetAllVendors(Guid leagueId)
+        public async Task<IActionResult> GetAllVendors()
         {
             return Ok(await _logic.GetVendors());
         }
