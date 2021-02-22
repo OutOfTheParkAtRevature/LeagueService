@@ -192,6 +192,8 @@ namespace Service
         /// <returns>Teams</returns>
         public async Task<IEnumerable<Team>> GetTeams()
         {
+            await _repo.SeedLeague();
+            await _repo.SeedSports();
             return await _repo.GetTeams();
         }
 
