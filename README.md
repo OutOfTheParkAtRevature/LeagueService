@@ -25,9 +25,9 @@ This Repository is part of an application designed with a Microservice Architect
 * Calendar Service: https://github.com/OutOfTheParkAtRevature/CalendarService
 * Equipment Service: https://github.com/OutOfTheParkAtRevature/EquipmentService
 * Frontend: https://github.com/OutOfTheParkAtRevature/Frontend
-* Game Service: https://github.com/OutOfTheParkAtRevature/GameService
 * Gateway Service: https://github.com/OutOfTheParkAtRevature/Gateway
 * Message Service: https://github.com/OutOfTheParkAtRevature/MessageService
+* News Service: https://github.com/OutOfTheParkAtRevature/NewsService
 * Notification Service: https://github.com/OutOfTheParkAtRevature/NotificationService
 * Playbook Service: https://github.com/OutOfTheParkAtRevature/PlaybookService
 * Season Service: https://github.com/OutOfTheParkAtRevature/SeasonService
