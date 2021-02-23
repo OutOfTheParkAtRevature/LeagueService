@@ -34,7 +34,7 @@ namespace LeagueService
         [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> GetLeagueById(Guid id)
         {
-            if (await _logic.LeagueExists(id) == false) return NotFound("League not found.");
+            if (await _logic.LeagueExistsID(id) == false) return NotFound("League not found.");
             return Ok(await _logic.GetLeagueById(id));
         }
 
@@ -52,7 +52,7 @@ namespace LeagueService
         [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> EditLeague(Guid id, [FromBody] string leagueName)
         {
-            if (await _logic.LeagueExists(id) == false) return NotFound("League with that ID not found.");
+            if (await _logic.LeagueExistsID(id) == false) return NotFound("League with that ID not found.");
             return Ok(await _logic.EditLeague(id, leagueName));
         }
 

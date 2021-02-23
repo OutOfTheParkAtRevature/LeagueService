@@ -62,7 +62,7 @@ namespace LeagueService.Controllers
         [Authorize(Roles = "Admin, League Manager, Head Coach")]
         public async Task<IActionResult> EditTeam(Guid id, [FromBody] EditTeamDto etd) {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
-            if (await _logic.TeamExists(id) == false) return NotFound("Team with that ID not found.");
+            if (await _logic.TeamExistsID(id) == false) return NotFound("Team with that ID not found.");
             if (_logic.CanEdit(claimsIdentity, id) == false) return Forbid("Not authorized to edit this team.");
             return Ok(await _logic.EditTeam(id, etd));          
         }
