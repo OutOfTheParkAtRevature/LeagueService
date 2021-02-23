@@ -27,13 +27,7 @@ namespace Service
         private readonly ILogger<Repo> _logger;
 
 
-        /*
-         * 
-         * 
-         * League Logic
-         * 
-         * 
-         */
+        /* League Logic */
 
         /// <summary>
         /// Checks to see if a league with the guid exists
@@ -49,7 +43,6 @@ namespace Service
                 return leagueExists;
             }
             return leagueExists;
-
         }
 
         /// <summary>
@@ -128,7 +121,6 @@ namespace Service
             if (league.LeagueName != leagueName && !string.IsNullOrEmpty(leagueName)) league.LeagueName = leagueName;
             await _repo.CommitSave();
             return league;
-
         }
 
         /// <summary>
@@ -142,17 +134,9 @@ namespace Service
             await _repo.CommitSave();
             _logger.LogInformation("League removed");
             return true;
-
         }
 
-
-        /*
-         * 
-         * 
-         * Team Logic
-         * 
-         * 
-         */
+        /*  Team Logic  */
 
         /// <summary>
         /// Checks to see if a team with the given ID exists in the DB
@@ -214,7 +198,6 @@ namespace Service
         /// <returns></returns>
         public async Task<Team> GetTeamByName(string teamName)
         {
-
             return await _repo.GetTeamByNameAndLeague(teamName);
         }
 
@@ -237,7 +220,6 @@ namespace Service
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
                 CreateCarpoolDto ccd = new CreateCarpoolDto
                 {
                     CarpoolID = team.CarpoolID,
@@ -288,14 +270,7 @@ namespace Service
                 return true;
         }
 
-
-        /*
-         * 
-         * 
-         * Vendor Logic
-         * 
-         * 
-         */
+        /* Vendor Logic */
 
         /// <summary>
         /// Checks to see if a vendor with the given name exists in the DB
@@ -311,7 +286,6 @@ namespace Service
                 return vendorExists;
             }
             return vendorExists;
-
         }
 
         /// <summary>
@@ -389,18 +363,7 @@ namespace Service
             return true;
         }
 
-        
-
-
-
-
-        /*
-         * 
-         * 
-         * Sport Logic
-         * 
-         * 
-         */
+        /* Sport Logic */
 
         public async Task<bool> SportExists(string sportName)
         {
@@ -412,22 +375,5 @@ namespace Service
             }
             return sportExists;
         }
-
-        
-
-        
-
-       
-
-        
-
-        
-
-        //public async Task<League> EditLeagueName(League league)
-        //{
-        //    if (tTeam.Name != editTeamDto.Name && editTeamDto.Name != "") { tTeam.Name = editTeamDto.Name; }
-        //}
-
-
     }
 }
