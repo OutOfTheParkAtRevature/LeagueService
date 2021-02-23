@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Model;
 using Model.DataTransfer;
-using Models;
 using Repository;
 
 namespace Service
