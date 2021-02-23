@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: league-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: league-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: league-service
+    spec:
+      containers:
+        - name: league-service
+          image: outofthepark15226.azurecr.io/league-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: league-http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: league-service-deployment
+spec:
+  ports:
+    - name: league-service
+      port: 80
+      targetPort: league-http
+  selector:
+    app: league-service
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: league-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: league-service.1c50b018f5784721b39b.eastus.aksapp.io
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          serviceName: league-service-deployment
+          servicePort: 80
+        path: /league(/|$)(.*)
+
