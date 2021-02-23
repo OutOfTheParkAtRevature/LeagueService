@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Model;
 using Model.DataTransfer;
-using Models;
 using Repository;
 
 namespace Service
@@ -34,7 +33,7 @@ namespace Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<bool> LeagueExists(Guid id)
+        public async Task<bool> LeagueExistsID(Guid id)
         {
             bool leagueExists = await _repo.Leagues.AnyAsync(x => x.LeagueID == id);
             if (leagueExists)
@@ -143,7 +142,7 @@ namespace Service
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
-        public async Task<bool> TeamExists(Guid teamId)
+        public async Task<bool> TeamExistsID(Guid teamId)
         {
             bool teamExists = await _repo.Teams.AnyAsync(x => x.TeamID == teamId);
             if (teamExists)
@@ -341,7 +340,7 @@ namespace Service
         /// <param name="id"></param>
         /// <param name="evd"></param>
         /// <returns></returns>
-        public async Task<Vendor> EditVendor(Guid id, EditVendorDto evd)
+        public async Task<Vendor> EditVendor(Guid id, CreateVendorDto evd)
         {
             Vendor vendor = await _repo.GetVendorById(id);
             if (vendor.VendorName != evd.VendorName && !string.IsNullOrEmpty(evd.VendorName)) vendor.VendorName = evd.VendorName;

@@ -62,10 +62,12 @@ namespace LeagueService.Controllers
         // PUT api/<VendorController>/5
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, League Manager, Head Coach")]
-        public async Task<IActionResult> EditVendor(Guid id, [FromBody] EditVendorDto evd)
+        public async Task<IActionResult> EditVendor(Guid id, [FromBody] CreateVendorDto evd)
         {
-            Vendor vendorInDb = await _logic.GetVendorById(id);
-            if (vendorInDb == null) return NotFound("No Vendoor with that ID was found.");
+            Vendor vendorToEdit = await _logic.GetVendorById(id);
+            Vendor vendor = await _logic.GetVendorByName(evd.VendorName);
+            if (vendorToEdit == null) return NotFound("No Vendoor with that ID was found.");
+            if (vendor != null && evd.VendorInfo == vendor.VendorInfo) return Conflict("That vendor already exists in the DB.");
             return Ok(await _logic.EditVendor(id, evd));
         }
 

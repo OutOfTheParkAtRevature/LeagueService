@@ -157,42 +157,42 @@ namespace LeagueService.Tests
         /// <summary>
         /// Tests the EditVendor() method of VendorController
         /// </summary>
-        [Fact]
-        public async void TestForEditVendor()
-        {
-            var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
-            .Options;
+        //[Fact]
+        //public async void TestForEditVendor()
+        //{
+        //    var options = new DbContextOptionsBuilder<LeagueContext>()
+        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
+        //    .Options;
 
-            using (var context = new LeagueContext(options))
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+        //    using (var context = new LeagueContext(options))
+        //    {
+        //        context.Database.EnsureDeleted();
+        //        context.Database.EnsureCreated();
 
-                Repo r = new Repo(context, new NullLogger<Repo>());
-                Logic logic = new Logic(r, new NullLogger<Repo>());
-                VendorController vendorController = new VendorController(logic);
-                var vendor = new Vendor
-                {
-                    VendorID = Guid.NewGuid(),
-                    VendorInfo = "chicken tenders",
-                    VendorName = "bojangles"
-                };
-                var vendorDto = new EditVendorDto
-                {
-                    VendorInfo = "chicken tenders",
-                    VendorName = "bojangles"
-                };
-                var editVendor = await vendorController.EditVendor(vendor.VendorID, vendorDto);
-                Assert.IsAssignableFrom<string>((editVendor as NotFoundObjectResult).Value);
+        //        Repo r = new Repo(context, new NullLogger<Repo>());
+        //        Logic logic = new Logic(r, new NullLogger<Repo>());
+        //        VendorController vendorController = new VendorController(logic);
+        //        var vendor = new Vendor
+        //        {
+        //            VendorID = Guid.NewGuid(),
+        //            VendorInfo = "chicken tenders",
+        //            VendorName = "bojangles"
+        //        };
+        //        var vendorDto = new EditVendorDto
+        //        {
+        //            VendorInfo = "chicken tenders",
+        //            VendorName = "bojangles"
+        //        };
+        //        var editVendor = await vendorController.EditVendor(vendor.VendorID, vendorDto);
+        //        Assert.IsAssignableFrom<string>((editVendor as NotFoundObjectResult).Value);
 
-                r.Vendors.Add(vendor);
-                await r.CommitSave();
+        //        r.Vendors.Add(vendor);
+        //        await r.CommitSave();
 
-                var editVendor2 = await vendorController.EditVendor(vendor.VendorID, vendorDto);
-                Assert.IsAssignableFrom<Vendor>((editVendor2 as OkObjectResult).Value);
-            }
-        }
+        //        var editVendor2 = await vendorController.EditVendor(vendor.VendorID, vendorDto);
+        //        Assert.IsAssignableFrom<Vendor>((editVendor2 as OkObjectResult).Value);
+        //    }
+        //}
 
         /// <summary>
         /// Tests the DeleteVendor() method of VendorController
