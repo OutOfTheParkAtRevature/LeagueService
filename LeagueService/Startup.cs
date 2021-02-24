@@ -43,7 +43,7 @@ namespace LeagueService
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeagueService", Version = "v1" });
             });
 
-            services.AddDbContext<LeagueContext>(options => options.UseSqlServer(_configuration.GetConnectionString("LocalDB")));
+            services.AddDbContext<LeagueContext>(options => options.UseSqlServer(_configuration.GetConnectionString("AzureDB")));
             
             var identityUrl = _configuration.GetValue<string>("IdentityUrl");
             var jwtSettings = _configuration.GetSection("JwtSettings");

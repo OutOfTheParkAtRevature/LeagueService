@@ -10,8 +10,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(LeagueContext))]
-    [Migration("20210216210328_m1")]
-    partial class m1
+    [Migration("20210224195229_InitializeLeagueDB")]
+    partial class InitializeLeagueDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,7 @@ namespace Repository.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StatLineID")
+                    b.Property<Guid?>("StatLineID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Wins")

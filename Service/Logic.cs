@@ -66,6 +66,9 @@ namespace Service
         /// <returns></returns>
         public async Task<IList<League>> GetLeagues()
         {
+            await _repo.SeedSports();
+            await _repo.SeedLeague();
+            await _repo.SeedTeams();
             return await _repo.Leagues.ToListAsync();
         }
 
@@ -177,6 +180,7 @@ namespace Service
         {
             await _repo.SeedLeague();
             await _repo.SeedSports();
+            await _repo.SeedTeams();
             return await _repo.GetTeams();
         }
 
@@ -223,7 +227,7 @@ namespace Service
                 {
                     CarpoolID = team.CarpoolID,
                 };
-                var response = await httpClient.PostAsJsonAsync($"api/Message/RecipientList", ccd);
+                var response = await httpClient.PostAsJsonAsync($"http://20.185.100.57:80/api/Message/RecipientList", ccd);
             }
             _repo.Teams.Add(team);
             await _repo.CommitSave();

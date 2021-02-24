@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repository.Migrations
 {
-    public partial class m1 : Migration
+    public partial class InitializeLeagueDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,7 +43,7 @@ namespace Repository.Migrations
                     Losses = table.Column<int>(type: "int", nullable: false),
                     CarpoolID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LeagueID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StatLineID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StatLineID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

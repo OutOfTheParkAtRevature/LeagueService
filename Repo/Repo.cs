@@ -109,7 +109,7 @@ namespace Repository
                 {
                     LeagueID = Guid.NewGuid(),
                     LeagueName = "CC Youth League",
-                    SportID = 0
+                    SportID = 1
                 };
                 await Leagues.AddAsync(league);
                 await CommitSave();
@@ -120,13 +120,11 @@ namespace Repository
         {
             if (!Sports.Any())
             {
-                int[] sportids = { 1, 2, 3, 4, 5, 6 };
                 string[] sports = { "Basketball", "Baseball", "Football", "Golf", "Soccer", "Hockey" };
                 for (int i = 0; i < sports.Length; i++)
                 {
                     Sport sport = new Sport()
                     {
-                        SportID = sportids[i],
                         SportName = sports[i]
                     };
                     await Sports.AddAsync(sport);
@@ -135,5 +133,26 @@ namespace Repository
             }
         }
 
+        public async Task SeedTeams()
+        {
+            if (!Teams.Any())
+            {
+                League league = await Leagues.FirstOrDefaultAsync();
+                string[] teams = { "Tigers", "Lions", "Bears", "Eagles" };
+                for (int i = 0; i < teams.Length; i++)
+                {
+                    Team team = new Team()
+                    {
+                        TeamID = Guid.NewGuid(),
+                        Name = teams[i],
+                        CarpoolID = Guid.NewGuid(),
+                        LeagueID = league.LeagueID,
+                        StatLineID = Guid.NewGuid()
+                    };
+                    await Teams.AddAsync(team);
+                }
+                await CommitSave();
+            }
+        }
     }
 }
