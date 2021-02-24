@@ -66,7 +66,7 @@ namespace LeagueService.Controllers
         {
             Vendor vendorToEdit = await _logic.GetVendorById(id);
             Vendor vendor = await _logic.GetVendorByName(evd.VendorName);
-            if (vendorToEdit == null) return NotFound("No Vendoor with that ID was found.");
+            if (vendorToEdit == null) return NotFound("No Vendor with that ID was found.");
             if (vendor != null && evd.VendorInfo == vendor.VendorInfo) return Conflict("That vendor already exists in the DB.");
             return Ok(await _logic.EditVendor(id, evd));
         }

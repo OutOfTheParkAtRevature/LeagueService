@@ -20,7 +20,7 @@ namespace LeagueService.Tests
         public async void TestForCreateLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LeagueControllerCreateLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -60,7 +60,7 @@ namespace LeagueService.Tests
         public async void TestForGetLeagues()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LeagueControllerGetLeagues")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -94,7 +94,7 @@ namespace LeagueService.Tests
         public async void TestForGetLeagueById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LeagueControllerGetLeagueById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -130,7 +130,7 @@ namespace LeagueService.Tests
         public async void TestForEditLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LeagueControllerEditLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -166,7 +166,7 @@ namespace LeagueService.Tests
         public async void TestForDeleteLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueController")
+            .UseInMemoryDatabase(databaseName: "p3LeagueControllerDeleteLeague")
             .Options;
 
             using (var context = new LeagueContext(options))

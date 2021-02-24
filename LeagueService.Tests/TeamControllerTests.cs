@@ -23,10 +23,10 @@ namespace LeagueService.Tests
         /// TODO: deal with httpcontext token
         /// </summary>
         [Fact]
-        public async void TestForCreateLeague()
+        public async void TestForCreateTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerCreateTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -62,7 +62,7 @@ namespace LeagueService.Tests
         public async void TestForGetAllTeams()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerGetTeams")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -109,7 +109,7 @@ namespace LeagueService.Tests
         public async void TestForGetTeamById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerGetTeamById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -149,7 +149,7 @@ namespace LeagueService.Tests
         public async void TestForGetTeamByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerGetTeamByName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -190,7 +190,7 @@ namespace LeagueService.Tests
         public async void TestForEditTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerEditTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -235,7 +235,7 @@ namespace LeagueService.Tests
         public async void TestForDeleteTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3TeamController")
+            .UseInMemoryDatabase(databaseName: "p3TeamControllerDeleteTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
