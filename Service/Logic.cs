@@ -362,7 +362,7 @@ namespace Service
         {
             _repo.Vendors.Remove(vendor);
             await _repo.CommitSave();
-            _logger.LogInformation("Team removed");
+            _logger.LogInformation("Vendor removed");
             return true;
         }
 
