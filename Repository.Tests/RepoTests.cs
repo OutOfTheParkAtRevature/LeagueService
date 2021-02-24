@@ -16,7 +16,7 @@ namespace Repository.Tests
         public async void TestForCommitSave()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3CommitSave")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -44,7 +44,7 @@ namespace Repository.Tests
         public async void TestForGetTeams()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetTeams")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -78,7 +78,7 @@ namespace Repository.Tests
         public async void TestForGetTeamById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetTeamsById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -112,7 +112,7 @@ namespace Repository.Tests
         public async void TestForGetTeamsByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetTeamsByName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -147,7 +147,7 @@ namespace Repository.Tests
         public async void TestForGetTeamsByLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetTeamsByLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -182,7 +182,7 @@ namespace Repository.Tests
         public async void TestForGetTeamByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetTeamByName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -217,7 +217,7 @@ namespace Repository.Tests
         public async void TestForGetVendors()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetVendors")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -247,7 +247,7 @@ namespace Repository.Tests
         public async void TestForGetVendorById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetVendorById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -277,7 +277,7 @@ namespace Repository.Tests
         public async void TestForGetVendorByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3GetVendorByName")
             .Options;
 
             using (var context = new LeagueContext(options))

@@ -17,36 +17,36 @@ namespace Service.Tests
         /// <summary>
         /// Tests the LeagueExists(id) method of Logic
         /// </summary>
-        //[Fact]
-        //public async void TestForLeagueExistsById()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
+        [Fact]
+        public async void TestForLeagueExistsById()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LogicLeagueExistsId")
+            .Options;
 
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
 
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var league = new League
-        //        {
-        //            LeagueID = Guid.NewGuid(),
-        //            SportID = 35,
-        //            LeagueName = "sports"
-        //        };
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                Logic logic = new Logic(r, new NullLogger<Repo>());
+                var league = new League
+                {
+                    LeagueID = Guid.NewGuid(),
+                    SportID = 35,
+                    LeagueName = "sports"
+                };
 
-        //        var leagueExists = await logic.LeagueExists(league.LeagueID);
-        //        Assert.False(leagueExists);
+                var leagueExists = await logic.LeagueExistsID(league.LeagueID);
+                Assert.False(leagueExists);
 
-        //        r.Leagues.Add(league);
-        //        await r.CommitSave();
-        //        var leagueExists2 = await logic.LeagueExists(league.LeagueID);
-        //        Assert.True(leagueExists2);
-        //    }
-        //}
+                r.Leagues.Add(league);
+                await r.CommitSave();
+                var leagueExists2 = await logic.LeagueExistsID(league.LeagueID);
+                Assert.True(leagueExists2);
+            }
+        }
 
         /// <summary>
         /// Tests the LeagueExists(name) method of Logic
@@ -55,7 +55,7 @@ namespace Service.Tests
         public async void TestForLeagueExistsByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicLeagueExistsName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -89,7 +89,7 @@ namespace Service.Tests
         public async void TestForGetLeagues()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetLeagues")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -129,7 +129,7 @@ namespace Service.Tests
         public async void TestForGetLeagueById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetLeagueById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -161,7 +161,7 @@ namespace Service.Tests
         public async void TestForAddLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicAddLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -198,7 +198,7 @@ namespace Service.Tests
         public async void TestForEditLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicEditLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -231,7 +231,7 @@ namespace Service.Tests
         public async void TestForDeleteLeague()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicDeleteLeague")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -265,40 +265,40 @@ namespace Service.Tests
         /// <summary>
         /// Tests the TeamExists(id) method of Logic
         /// </summary>
-        //[Fact]
-        //public async void TestForTeamExistsById()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
+        [Fact]
+        public async void TestForTeamExistsById()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LogicTeamExistsId")
+            .Options;
 
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
 
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var team = new Team
-        //        {
-        //            LeagueID = Guid.NewGuid(),
-        //            TeamID = Guid.NewGuid(),
-        //            CarpoolID = Guid.NewGuid(),
-        //            StatLineID = Guid.NewGuid(),
-        //            Wins = 6,
-        //            Losses = 2,
-        //            Name = "seals"
-        //        };
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                Logic logic = new Logic(r, new NullLogger<Repo>());
+                var team = new Team
+                {
+                    LeagueID = Guid.NewGuid(),
+                    TeamID = Guid.NewGuid(),
+                    CarpoolID = Guid.NewGuid(),
+                    StatLineID = Guid.NewGuid(),
+                    Wins = 6,
+                    Losses = 2,
+                    Name = "seals"
+                };
 
-        //        var teamExists = await logic.TeamExists(team.TeamID);
-        //        Assert.False(teamExists);
+                var teamExists = await logic.TeamExistsID(team.TeamID);
+                Assert.False(teamExists);
 
-        //        r.Teams.Add(team);
-        //        await r.CommitSave();
-        //        var teamExists2 = await logic.TeamExists(team.TeamID);
-        //        Assert.True(teamExists2);
-        //    }
-        //}
+                r.Teams.Add(team);
+                await r.CommitSave();
+                var teamExists2 = await logic.TeamExistsID(team.TeamID);
+                Assert.True(teamExists2);
+            }
+        }
 
         /// <summary>
         /// Tests the TeamExists(name) method of Logic
@@ -307,7 +307,7 @@ namespace Service.Tests
         public async void TestForTeamExistsByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicTeamExistsName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -349,7 +349,7 @@ namespace Service.Tests
             var logicClass = new Logic();
 
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetTeams")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -387,7 +387,7 @@ namespace Service.Tests
         public async void TestForGetTeamById()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetTeamById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -422,7 +422,7 @@ namespace Service.Tests
         public async void TestForGetTeamByName()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetTeamByName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -458,7 +458,7 @@ namespace Service.Tests
         public async void TestForAddTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicAddTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -468,6 +468,16 @@ namespace Service.Tests
 
                 Repo r = new Repo(context, new NullLogger<Repo>());
                 Logic logic = new Logic(r, new NullLogger<Repo>());
+
+                var league = new League
+                {
+                    LeagueID = Guid.NewGuid(),
+                    SportID = 33,
+                    LeagueName = "NBA"
+                };
+                r.Leagues.Add(league);
+                await r.CommitSave();
+
                 var team = new Team
                 {
                     TeamID = Guid.NewGuid(),
@@ -479,7 +489,8 @@ namespace Service.Tests
                     Losses = 1
                 };
 
-                //var newTeam = await logic.AddTeam(team);
+                //string token = "access_token";
+                //var newTeam = await logic.AddTeam(team.Name, token);
                 //Assert.Contains<Team>(newTeam, context.Teams);
             }
         }
@@ -491,7 +502,7 @@ namespace Service.Tests
         public async void TestForEditTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicEditTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -534,7 +545,7 @@ namespace Service.Tests
         public async void TestForDeleteTeam()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicDeleteTeam")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -576,7 +587,7 @@ namespace Service.Tests
         public async void TestForVendorExists()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicVendorExists")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -614,7 +625,7 @@ namespace Service.Tests
             var logicClass = new Logic();
 
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetVendors")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -652,7 +663,7 @@ namespace Service.Tests
             var logicClass = new Logic();
 
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetVendorById")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -687,7 +698,7 @@ namespace Service.Tests
             var logicClass = new Logic();
 
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicGetVendorByName")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -718,7 +729,7 @@ namespace Service.Tests
         public async void TestForAddVendor()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicAddVendor")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -742,45 +753,81 @@ namespace Service.Tests
         /// <summary>
         /// Tests the EditVendor() method of Logic
         /// </summary>
-        //[Fact]
-        //public async void TestForEditVendor()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
+        [Fact]
+        public async void TestForEditVendor()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LogicEditVendor")
+            .Options;
 
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
 
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var vendor = new Vendor
-        //        {
-        //            VendorID = Guid.NewGuid(),
-        //            VendorInfo = "hotdog",
-        //            VendorName = "weinerhut"
-        //        };
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                Logic logic = new Logic(r, new NullLogger<Repo>());
+                var vendor = new Vendor
+                {
+                    VendorID = Guid.NewGuid(),
+                    VendorInfo = "hotdog",
+                    VendorName = "weinerhut"
+                };
 
-        //        r.Vendors.Add(vendor);
-        //        await r.CommitSave();
+                r.Vendors.Add(vendor);
+                await r.CommitSave();
 
-        //        var getVendor = await logic.GetVendorById(vendor.VendorID);
-        //        Assert.Equal("hotdog", getVendor.VendorInfo);
-        //        Assert.Equal("weinerhut", getVendor.VendorName);
+                var getVendor = await logic.GetVendorById(vendor.VendorID);
+                Assert.Equal("hotdog", getVendor.VendorInfo);
+                Assert.Equal("weinerhut", getVendor.VendorName);
 
-        //        var vendorDto = new EditVendorDto
-        //        {
-        //            VendorInfo = "hamburger",
-        //            VendorName = "wendys"
-        //        };
+                var vendorDto = new CreateVendorDto
+                {
+                    VendorInfo = "hamburger",
+                    VendorName = "wendys"
+                };
 
-        //        var editVendor = await logic.EditVendor(vendor.VendorID, vendorDto);
-        //        Assert.Equal("hamburger", editVendor.VendorInfo);
-        //        Assert.Equal("wendys", editVendor.VendorName);
-        //    }
-        //}
+                var editVendor = await logic.EditVendor(vendor.VendorID, vendorDto);
+                Assert.Equal("hamburger", editVendor.VendorInfo);
+                Assert.Equal("wendys", editVendor.VendorName);
+            }
+        }
+
+        /// <summary>
+        /// Tests the DeleteVendor() method of Logic
+        /// </summary>
+        [Fact]
+        public async void TestForDeleteVendor()
+        {
+            var options = new DbContextOptionsBuilder<LeagueContext>()
+            .UseInMemoryDatabase(databaseName: "p3LogicDeleteVendor")
+            .Options;
+
+            using (var context = new LeagueContext(options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                Repo r = new Repo(context, new NullLogger<Repo>());
+                Logic logic = new Logic(r, new NullLogger<Repo>());
+                var vendor = new Vendor
+                {
+                    VendorID = Guid.NewGuid(),
+                    VendorInfo = "hotdog",
+                    VendorName = "weinerhut"
+                };
+
+                r.Vendors.Add(vendor);
+                await r.CommitSave();
+
+                var getVendor = await logic.GetVendorById(vendor.VendorID);
+                Assert.Equal("hotdog", getVendor.VendorInfo);
+                Assert.Equal("weinerhut", getVendor.VendorName);
+
+                bool deleteVendor = await logic.DeleteVendor(vendor);
+                Assert.True(deleteVendor);
+            }
+        }
 
         //------------------------------End of Vendor Tests-----------------------------------------
 
@@ -793,7 +840,7 @@ namespace Service.Tests
         public async void TestForSportExists()
         {
             var options = new DbContextOptionsBuilder<LeagueContext>()
-            .UseInMemoryDatabase(databaseName: "p3LeagueService")
+            .UseInMemoryDatabase(databaseName: "p3LogicSportExists")
             .Options;
 
             using (var context = new LeagueContext(options))
@@ -820,147 +867,5 @@ namespace Service.Tests
         }
 
         //-------------------------------End of Sports Tests----------------------------------------
-        //[Fact]
-        //public async void TestForGetTeams()
-        //{
-        //    //for coverage
-        //    var dbContext = new LeagueContext();
-        //    var logicClass = new Logic();
-
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
-
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
-
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var team = new Team
-        //        {
-        //            TeamID = Guid.NewGuid(),
-        //            CarpoolID = Guid.NewGuid(),
-        //            LeagueID = Guid.NewGuid(),
-        //            StatLineID = Guid.NewGuid(),
-        //            Name = "Broncos",
-        //            Wins = 2,
-        //            Losses = 1
-        //        };
-
-        //        r.Teams.Add(team);
-        //        await r.CommitSave();
-        //        var listOfTeams = await logic.GetTeams();
-        //        Assert.NotNull(listOfTeams);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Tests the GetTeamById() method of Logic
-        ///// </summary>
-        //[Fact]
-        //public async void TestForGetTeamById()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
-
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
-
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var team = new Team
-        //        {
-        //            TeamID = Guid.NewGuid(),
-        //            CarpoolID = Guid.NewGuid(),
-        //            LeagueID = Guid.NewGuid(),
-        //            StatLineID = Guid.NewGuid(),
-        //            Name = "Broncos",
-        //            Wins = 2,
-        //            Losses = 1
-        //        };
-
-        //        r.Teams.Add(team);
-        //        await r.CommitSave();
-        //        var listOfTeams = await logic.GetTeamById(team.TeamID);
-        //        Assert.True(listOfTeams.Equals(team));
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Tests the EditTeam method of Logic
-        ///// </summary>
-        //[Fact]
-        //public async void TestForEditTeam()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
-
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
-
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var team = new Team()
-        //        {
-        //            TeamID = Guid.NewGuid(),
-        //            CarpoolID = Guid.NewGuid(),
-        //            LeagueID = Guid.NewGuid(),
-        //            StatLineID = Guid.NewGuid(),
-        //            Name = "Dirty Donkies",
-        //            Wins = 0,
-        //            Losses = 5
-        //        };
-
-        //        r.Teams.Add(team);
-        //        await r.CommitSave();
-
-        //        var team2 = new EditTeamDto()
-        //        {
-        //            Name = "Bad Broncoes",
-        //            Wins = 0,
-        //            Losses = 5
-        //        };
-
-        //        var editedTeam = await logic.EditTeam(team.TeamID, team2);
-        //        Assert.Equal(editedTeam.Name, context.Teams.Find(team.TeamID).Name);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Tests the AddVendor() method of Logic
-        ///// </summary>
-        //[Fact]
-        //public async void TestForAddVendor()
-        //{
-        //    var options = new DbContextOptionsBuilder<LeagueContext>()
-        //    .UseInMemoryDatabase(databaseName: "p3LeagueService")
-        //    .Options;
-
-        //    using (var context = new LeagueContext(options))
-        //    {
-        //        context.Database.EnsureDeleted();
-        //        context.Database.EnsureCreated();
-
-        //        Repo r = new Repo(context, new NullLogger<Repo>());
-        //        Logic logic = new Logic(r, new NullLogger<Repo>());
-        //        var vendor = new Vendor
-        //        {
-        //            VendorID = Guid.NewGuid(),
-        //            VendorInfo = "hotdog",
-        //            VendorName = "weinerhut"
-        //        };
-
-        //        var newVendor = await logic.AddVendor(vendor.VendorName, vendor.VendorInfo);
-        //        Assert.Contains<Vendor>(newVendor, context.Vendors);
-        //    }
-        //}
     }
 }
