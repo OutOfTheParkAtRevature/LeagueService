@@ -30,7 +30,7 @@ stages:
               projectName: OutOfTheParkLeagueService
               scannerMode: MSBuild
               extraProperties: |
-                sonar.exclusions=**/obj/**,**/lib/**,**/*.dll
+                sonar.exclusions=**/obj/**,**/lib/**,**/*.dll,**/Migrations/**
           - script: dotnet build --configuration Release
             displayName: Analyze Build
           - task: DotNetCoreCLI@2
