@@ -50,7 +50,6 @@ namespace LeagueService.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> CreateTeam([FromBody] string teamName)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
@@ -59,7 +58,6 @@ namespace LeagueService.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, League Manager, Head Coach")]
         public async Task<IActionResult> EditTeam(Guid id, [FromBody] EditTeamDto etd) {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             if (await _logic.TeamExistsID(id) == false) return NotFound("Team with that ID not found.");
@@ -69,7 +67,6 @@ namespace LeagueService.Controllers
 
         // DELETE api/<TeamController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles="Admin, League Manager")]
         public async Task<IActionResult> DeleteTeam(Guid id)
         {
             Team team = await _logic.GetTeamById(id);

@@ -15,7 +15,6 @@ namespace LeagueService.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin, League Manager, Head Coach, Assistant Coach, Parent")]
     public class VendorController : ControllerBase
     {
         private readonly Logic _logic;
@@ -51,7 +50,6 @@ namespace LeagueService.Controllers
 
         // POST api/<VendorController>
         [HttpPost]
-        [Authorize(Roles = "Admin, League Manager, Head Coach")]
         public async Task<IActionResult> CreateVendor([FromBody] CreateVendorDto createVendorDto)
         {
             if (await _logic.VendorExists(createVendorDto.VendorName) == true) return Conflict("Vendor already exists.");
@@ -61,7 +59,6 @@ namespace LeagueService.Controllers
 
         // PUT api/<VendorController>/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, League Manager, Head Coach")]
         public async Task<IActionResult> EditVendor(Guid id, [FromBody] CreateVendorDto evd)
         {
             Vendor vendorToEdit = await _logic.GetVendorById(id);
@@ -73,7 +70,6 @@ namespace LeagueService.Controllers
 
         // DELETE api/<VendorController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, League Manager, Head Coach")]
         public async Task<IActionResult> DeleteVendor(Guid id)
         {
             Vendor vendorInDb = await _logic.GetVendorById(id);

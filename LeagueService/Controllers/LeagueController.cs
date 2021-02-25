@@ -24,14 +24,12 @@ namespace LeagueService
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetLeagues()
         {
             return Ok(await _logic.GetLeagues());
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> GetLeagueById(Guid id)
         {
             if (await _logic.LeagueExistsID(id) == false) return NotFound("League not found.");
@@ -40,7 +38,6 @@ namespace LeagueService
 
         
         [HttpPost]
-        [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> CreateLeague([FromBody] CreateLeagueDto cld)
         {
             if (await _logic.LeagueExists(cld.LeagueName) == true) return Conflict("League with that name already exists.");
@@ -49,7 +46,6 @@ namespace LeagueService
         
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> EditLeague(Guid id, [FromBody] string leagueName)
         {
             if (await _logic.LeagueExistsID(id) == false) return NotFound("League with that ID not found.");
@@ -59,7 +55,6 @@ namespace LeagueService
 
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, League Manager")]
         public async Task<IActionResult> DeleteLeague(Guid id)
         {
             League league = await _logic.GetLeagueById(id);
