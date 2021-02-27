@@ -36,22 +36,5 @@ spec:
       targetPort: league-http
   selector:
     app: league-service
-  type: LoadBalancer
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: league-service-ingress
-  annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
-spec:
-  rules:
-  - host: league-service.1c50b018f5784721b39b.eastus.aksapp.io
-    http:
-      paths:
-      - pathType: Prefix
-        backend:
-          serviceName: league-service-deployment
-          servicePort: 80
-        path: /league(/|$)(.*)
+  type: ClusterIP
 
