@@ -1,8 +1,6 @@
 trigger:
 - staging
 
-pr:
-- staging
 
 variables:
   leagueRepository: 'league-service'
@@ -30,7 +28,7 @@ stages:
               projectName: OutOfTheParkLeagueService
               scannerMode: MSBuild
               extraProperties: |
-                sonar.exclusions=**/obj/**,**/lib/**,**/*.dll,**/Migrations/**
+                sonar.exclusions=**/obj/**,**/lib/**,**/*.dll,**/Startup.cs,**/Program.cs,**/Migrations/**
           - script: dotnet build --configuration Release
             displayName: Analyze Build
           - task: DotNetCoreCLI@2
@@ -61,7 +59,7 @@ stages:
               buildContext: $(Build.Repository.LocalPath)
               repository: $(leagueRepository)
               dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-              containerRegistry: 'Container Registry Connection'
+              containerRegistry: 'ACR'
               tags: |
                 $(tag)
           
@@ -76,7 +74,7 @@ stages:
       displayName: Deploy
       pool:
         vmImage: 'ubuntu-latest'
-      environment: 'spike2.default'
+      environment: 'spike.default'
       variables:
       - group: Release
       strategy:
@@ -93,7 +91,7 @@ stages:
             - task: Kubernetes@1
               inputs:
                 connectionType: 'Kubernetes Service Connection'
-                kubernetesServiceEndpoint: 'Kubernetes Cluster Connection Take 2'
+                kubernetesServiceEndpoint: 'kube3'
                 namespace: 'default'
                 command: 'login'
 
@@ -102,15 +100,15 @@ stages:
               inputs:
                 action: createSecret
                 secretName: $(imagePullSecret)
-                dockerRegistryEndpoint: 'Container Registry Connection'
-                kubernetesServiceConnection: 'Kubernetes Cluster Connection Take 2'
+                dockerRegistryEndpoint: 'ACR'
+                kubernetesServiceConnection: 'kube3'
                 namespace: 'default'
 
             - task: KubernetesManifest@0
               displayName: Deploy to Kubernetes cluster
               inputs:
                 action: deploy
-                kubernetesServiceConnection: 'Kubernetes Cluster Connection Take 2'
+                kubernetesServiceConnection: 'kube3'
                 namespace: 'default'
                 manifests: |
                   $(Pipeline.Workspace)/manifests/deployment.yml
