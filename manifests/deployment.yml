@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: league-service
-          image: outofthepark15226.azurecr.io/league-service
+          image: outoftheparkacr.azurecr.io/league-service
           imagePullPolicy: Always
           ports:
             - containerPort: 80
