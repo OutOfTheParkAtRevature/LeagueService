@@ -14,6 +14,7 @@ namespace LeagueService
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeagueController : ControllerBase
     {
         private readonly Logic _logic;

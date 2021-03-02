@@ -16,6 +16,7 @@ namespace LeagueService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TeamController : ControllerBase
     {
 

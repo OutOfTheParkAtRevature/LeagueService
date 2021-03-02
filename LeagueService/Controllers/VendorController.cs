@@ -15,6 +15,7 @@ namespace LeagueService.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class VendorController : ControllerBase
     {
         private readonly Logic _logic;
