@@ -22,7 +22,7 @@ spec:
           image: outoftheparkacr.azurecr.io/league-service
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 443
               name: league-http
 ---
 apiVersion: v1
