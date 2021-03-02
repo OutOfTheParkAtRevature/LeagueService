@@ -4,7 +4,7 @@ trigger:
 
 variables:
   leagueRepository: 'league-service'
-  tag: '$(Build.BuildId)'
+  tag: 'latest'
   imagePullSecret: 'league'
 
 stages:
