@@ -31,9 +31,10 @@ metadata:
   name: league-service-deployment
 spec:
   ports:
-    - name: league-service
-      port: 80
-      targetPort: league-http
+    - name: season-service
+      protocol: TCP
+      port: 443
+      targetPort: 443
   selector:
     app: league-service
   type: ClusterIP
