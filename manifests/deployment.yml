@@ -22,7 +22,7 @@ spec:
           image: outoftheparkacr.azurecr.io/league-service
           imagePullPolicy: Always
           ports:
-            - containerPort: 443
+            - containerPort: 80
               name: league-http
 ---
 apiVersion: v1
@@ -31,10 +31,10 @@ metadata:
   name: league-service-deployment
 spec:
   ports:
-    - name: season-service
+    - name: league-service
       protocol: TCP
-      port: 443
-      targetPort: 443
+      port: 80
+      targetPort: 80
   selector:
     app: league-service
   type: ClusterIP
