@@ -227,7 +227,7 @@ namespace Service
                 {
                     CarpoolID = team.CarpoolID,
                 };
-                var response = await httpClient.PostAsJsonAsync($"http://20.185.100.57:80/api/Message/RecipientList", ccd);
+                var response = await httpClient.PostAsJsonAsync($"http://10.0.6.142/api/Message/RecipientList", ccd);
             }
             _repo.Teams.Add(team);
             await _repo.CommitSave();
