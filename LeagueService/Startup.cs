@@ -53,6 +53,9 @@ namespace LeagueService
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
+                options.Authority = jwtSettings.GetSection("validIssuer").Value;
+                options.Audience = jwtSettings.GetSection("validAudience").Value;
+                options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
