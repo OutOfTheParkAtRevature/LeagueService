@@ -10,8 +10,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(LeagueContext))]
-    [Migration("20210224195229_InitializeLeagueDB")]
-    partial class InitializeLeagueDB
+    [Migration("20210302235351_leaguemigration")]
+    partial class leaguemigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
