@@ -25,6 +25,8 @@ spec:
           ports:
             - containerPort: 80
               name: league-http
+            - containerPort: 443
+              name: league-https
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +39,11 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
+    - name: league-https
+      protocol: TCP
+      port: 443
+      targetPort: 443
   selector:
     app: league-service
-  type: ClusterIP
+  type: LoadBalancer
 
