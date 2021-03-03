@@ -33,7 +33,7 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: league-service
+    - name: league-http
       protocol: TCP
       port: 80
       targetPort: 80
